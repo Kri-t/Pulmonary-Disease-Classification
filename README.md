@@ -1,66 +1,45 @@
-# Pulmonary Disease Classification using ResNet50
+# Pulmonary Disease Classification: Pneumonia vs Tuberculosis
 
-## Overview
+## Introduction
 
-This project implements a deep learning model to classify chest X-ray images into three categories: Tuberculosis, Pneumonia, and Normal using the ResNet50 architecture. The model is trained on augmented images, fine-tuned using transfer learning, and evaluated for classification accuracy.
+In recent years, medical imaging and deep learning have made significant strides in diagnosing diseases, especially in the field of pulmonary health. This project aims to build an automated classification system using ResNet50, a deep convolutional neural network, to distinguish between Pneumonia and Tuberculosis (TB) in chest X-ray images. This classification system aims to support healthcare professionals in their diagnosis by providing fast, accurate, and reliable predictions.
 
-## Dataset
+## The Challenge
 
-The dataset consists of chest X-ray images for three classes:
+Both Pneumonia and Tuberculosis are serious pulmonary diseases that have similar symptoms, such as coughing and difficulty breathing. However, their treatment plans and prognosis are different. Manually diagnosing these diseases from chest X-rays is time-consuming, requires expert knowledge, and can be prone to human error. This is where machine learning-based automated classification systems can provide an edge, enabling faster and more consistent diagnoses.
 
-Tuberculosis
-Pneumonia
-Normal
-The data has been preprocessed and augmented to balance the classes and improve the model's performance.
+## The Solution
 
+This project builds a machine learning model using ResNet50, which is pre-trained on the ImageNet dataset and fine-tuned for this specific task of distinguishing between Pneumonia and Tuberculosis. The model is trained on a large dataset of chest X-ray images and achieves high accuracy in classifying these diseases. The solution is intended to assist radiologists and healthcare professionals by providing a second opinion and improving diagnostic speed.
 
-## Dataset Preparation
+## Key Features
+### Deep Learning Model:
+The model uses ResNet50, a state-of-the-art convolutional neural network (CNN) architecture that is well-suited for image classification tasks.
 
-Organize the images in a directory structure as follows:
-all_images/
-    ├── imgs/
-        ├── Tuberculosis/
-        ├── Pneumonia/
-        ├── Normal/
+### Data Augmentation:
+To improve the robustness of the model, data augmentation techniques like rotation, zoom, width/height shift, and horizontal flipping are applied on the training images.
 
-        
-## Data Augmentation
+### High Accuracy:
+After fine-tuning, the model achieves 88.19% validation accuracy, demonstrating its effectiveness in classifying chest X-ray images.
 
-The dataset is augmented to increase its size and variability, addressing class imbalance. The following augmentations were applied:
+### Transfer Learning:
+ResNet50 is used with pre-trained weights from ImageNet, making it easier to achieve good performance even with relatively smaller datasets.
 
-  Rotation (up to 10 degrees)
-  Width and height shifts (up to 10%)
-  Shear and zoom ranges (up to 10%)
-  Horizontal flipping
-  Brightness adjustments
-  Model Architecture
+## Impact
+### Improved Diagnostic Efficiency:
+The model can quickly analyze chest X-ray images, providing an accurate classification in a fraction of the time it would take a radiologist.
 
+### Supporting Healthcare Professionals:
+The model acts as an intelligent assistant to healthcare professionals, offering them a second opinion and increasing confidence in diagnosis, especially in areas with limited access to specialized medical experts.
 
-### This project uses the ResNet50 model pre-trained on ImageNet for transfer learning:
+### Scalability:
+This model can be scaled and integrated into healthcare systems for mass screening in hospitals, health centers, or even remote areas, helping to identify patients who need immediate attention.
+### Accuracy and Consistency:
+The machine learning model removes human bias and inconsistency, ensuring that every chest X-ray is analyzed using the same standards and procedures.
 
-Base model: ResNet50 (pre-trained, not trainable)
-Global Average Pooling: Reduces the output dimensions of the convolutional layers.
-Fully Connected Layer: Dense layer with 1024 units and ReLU activation.
-Output Layer: Softmax activation for multi-class classification (3 classes).
-Fine-Tuning
-After training the model initially with the base layers frozen, some layers of the ResNet50 model were unfrozen and fine-tuned to improve performance.
-
-
-## Training the Model
-
-The model is trained with the following configuration:
-
-Optimizer: Adam
-Learning rate: 1e-4 (initial), fine-tuned to 1e-5
-Loss Function: Categorical Crossentropy
-Metrics: Accuracy
-Callbacks
-
-### Early Stopping: Stops training if validation loss does not improve for 5 epochs.
-### Learning Rate Reduction: Reduces the learning rate by a factor of 0.2 when validation loss plateaus.
-
-
-## Evaluation
-
-The model's performance is evaluated on a validation set, achieving a validation accuracy of 88.19% and validation loss of 0.6203 after fine-tuning.
-
+## Technologies Used
+ResNet50 (Pre-trained model for image classification)
+TensorFlow/Keras (Deep learning framework)
+OpenCV (Image preprocessing)
+NumPy & Pandas (Data manipulation)
+Matplotlib (Visualizations and performance plots)
